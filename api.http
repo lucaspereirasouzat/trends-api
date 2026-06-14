@@ -1,0 +1,132 @@
+### Google Trends API - REST Client
+@baseUrl = http://localhost:3000
+
+### Documentação - Lista todas as rotas disponíveis
+GET {{baseUrl}}/
+
+###
+
+### Autocomplete - Sugestões de pesquisa
+GET {{baseUrl}}/autocomplete?keyword=javascript
+
+###
+
+### Autocomplete - Exemplo em português
+GET {{baseUrl}}/autocomplete?keyword=inteligência artificial
+
+###
+
+### Interest Over Time - Interesse ao longo do tempo (palavra única)
+GET {{baseUrl}}/interest-over-time?keyword=bitcoin
+
+###
+
+### Interest Over Time - Comparando múltiplas palavras-chave
+GET {{baseUrl}}/interest-over-time?keyword=bitcoin,ethereum,dogecoin
+
+###
+
+### Interest Over Time - Com período específico
+GET {{baseUrl}}/interest-over-time?keyword=chatgpt&startTime=2023-01-01&endTime=2023-12-31
+
+###
+
+### Interest Over Time - Com região específica
+GET {{baseUrl}}/interest-over-time?keyword=futebol&geo=BR
+
+###
+
+### Interest Over Time - Com resolução temporal granular
+GET {{baseUrl}}/interest-over-time?keyword=black friday&granularTimeResolution=true
+
+###
+
+### Interest By Region - Interesse por região
+GET {{baseUrl}}/interest-by-region?keyword=pizza
+
+###
+
+### Interest By Region - Com período específico
+GET {{baseUrl}}/interest-by-region?keyword=coffee&startTime=2024-01-01&endTime=2024-12-31
+
+###
+
+### Interest By Region - Com país específico
+GET {{baseUrl}}/interest-by-region?keyword=sushi&geo=US
+
+###
+
+### Interest By Region - Com resolução de cidade
+GET {{baseUrl}}/interest-by-region?keyword=restaurant&geo=US-CA&resolution=CITY
+
+###
+
+### Related Queries - Consultas relacionadas
+GET {{baseUrl}}/related-queries?keyword=machine learning
+
+###
+
+### Related Queries - Com período específico
+GET {{baseUrl}}/related-queries?keyword=python&startTime=2024-01-01&endTime=2024-12-31
+
+###
+
+### Related Queries - Com região específica
+GET {{baseUrl}}/related-queries?keyword=netflix&geo=BR
+
+###
+
+### Related Topics - Tópicos relacionados
+GET {{baseUrl}}/related-topics?keyword=chatgpt
+
+###
+
+### Related Topics - Com período específico
+GET {{baseUrl}}/related-topics?keyword=artificial intelligence&startTime=2024-01-01&endTime=2024-12-31
+
+###
+
+### Related Topics - Com região específica
+GET {{baseUrl}}/related-topics?keyword=copa do mundo&geo=BR
+
+###
+
+### Real-time Trends - Tendências em tempo real (US)
+GET {{baseUrl}}/realtime-trends
+
+###
+
+### Real-time Trends - Tendências em tempo real (Brasil)
+GET {{baseUrl}}/realtime-trends?geo=BR
+
+###
+
+### Real-time Trends - Tendências em tempo real (Portugal)
+GET {{baseUrl}}/realtime-trends?geo=PT
+
+###
+
+### Real-time Trends - Com categoria específica
+GET {{baseUrl}}/realtime-trends?geo=US&category=business
+
+###
+
+### Daily Trends - Tendências diárias (US)
+GET {{baseUrl}}/daily-trends?geo=US
+
+###
+
+### Daily Trends - Tendências diárias (Brasil)
+GET {{baseUrl}}/daily-trends?geo=BR
+
+###
+
+### Daily Trends - Com data específica
+GET {{baseUrl}}/daily-trends?geo=US&trendDate=2024-12-25
+
+###
+
+### Daily Trends - Tendências de hoje
+GET {{baseUrl}}/daily-trends?geo=BR&trendDate=2025-12-31
+
+###
