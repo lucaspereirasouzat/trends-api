@@ -92,4 +92,26 @@ describe("InterestOverTimeUseCase", () => {
     const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock.calls[0]![0];
     expect(call).toEqual({ keyword: "bitcoin" });
   });
+
+  it("passes property to gateway when provided", async () => {
+    const gateway = createMockGateway();
+    const useCase = new InterestOverTimeUseCase(gateway);
+
+    await useCase.execute({ keyword: "bitcoin", property: "youtube" });
+
+    expect(gateway.interestOverTime).toHaveBeenCalledWith({
+      keyword: "bitcoin",
+      property: "youtube",
+    });
+  });
+
+  it("omits property when not provided", async () => {
+    const gateway = createMockGateway();
+    const useCase = new InterestOverTimeUseCase(gateway);
+
+    await useCase.execute({ keyword: "bitcoin" });
+
+    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock.calls[0]![0];
+    expect(call.property).toBeUndefined();
+  });
 });

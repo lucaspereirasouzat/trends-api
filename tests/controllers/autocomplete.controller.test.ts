@@ -1,19 +1,16 @@
 import { describe, it, expect, mock } from "bun:test";
-import { createAutocompleteController } from "../../src/controllers/autocomplete.controller";
+import { AutocompleteController } from "../../src/controllers/autocomplete.controller";
 
 describe("AutocompleteController", () => {
   it("delegates query to use-case and returns result", async () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ data: { suggestions: ["test"] } }),
     };
-    const app = createAutocompleteController(mockUseCase as any);
+    const controller = new AutocompleteController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/autocomplete?keyword=bitcoin")
-    );
-    const body = await response.json();
+    const result = await controller.handle({ keyword: "bitcoin" });
 
-    expect(body).toEqual({ data: { suggestions: ["test"] } });
+    expect(result).toEqual({ data: { suggestions: ["test"] } });
     expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "bitcoin" });
   });
 
@@ -21,13 +18,10 @@ describe("AutocompleteController", () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ error: "keyword is required" }),
     };
-    const app = createAutocompleteController(mockUseCase as any);
+    const controller = new AutocompleteController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/autocomplete")
-    );
-    const body = await response.json();
+    const result = await controller.handle({});
 
-    expect(body).toEqual({ error: "keyword is required" });
+    expect(result).toEqual({ error: "keyword is required" });
   });
 });

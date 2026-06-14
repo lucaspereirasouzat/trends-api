@@ -9,6 +9,7 @@ declare module "google-trends-api" {
     endTime?: Date;
     geo?: string;
     granularTimeResolution?: boolean;
+    property?: string;
   }
 
   interface InterestByRegionOptions {

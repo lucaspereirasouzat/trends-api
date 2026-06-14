@@ -1,19 +1,16 @@
 import { describe, it, expect, mock } from "bun:test";
-import { createRelatedTopicsController } from "../../src/controllers/related-topics.controller";
+import { RelatedTopicsController } from "../../src/controllers/related-topics.controller";
 
 describe("RelatedTopicsController", () => {
   it("delegates query to use-case", async () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ data: { related_topics: {} } }),
     };
-    const app = createRelatedTopicsController(mockUseCase as any);
+    const controller = new RelatedTopicsController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/related-topics?keyword=chatgpt")
-    );
-    const body = await response.json();
+    const result = await controller.handle({ keyword: "chatgpt" });
 
-    expect(body).toEqual({ data: { related_topics: {} } });
+    expect(result).toEqual({ data: { related_topics: {} } });
     expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "chatgpt" });
   });
 
@@ -21,13 +18,10 @@ describe("RelatedTopicsController", () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ error: "keyword is required" }),
     };
-    const app = createRelatedTopicsController(mockUseCase as any);
+    const controller = new RelatedTopicsController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/related-topics")
-    );
-    const body = await response.json();
+    const result = await controller.handle({});
 
-    expect(body).toEqual({ error: "keyword is required" });
+    expect(result).toEqual({ error: "keyword is required" });
   });
 });

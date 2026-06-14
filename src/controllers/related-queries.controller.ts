@@ -1,8 +1,10 @@
-import { Elysia } from "elysia";
 import type { RelatedQueriesUseCase } from "../use-cases/related-queries.use-case";
+import type { RelatedQueriesRequest } from "../use-cases/related-queries.use-case";
 
-export function createRelatedQueriesController(useCase: RelatedQueriesUseCase) {
-  return new Elysia().get("/related-queries", async ({ query }) => {
-    return useCase.execute(query);
-  });
+export class RelatedQueriesController {
+  constructor(private readonly useCase: RelatedQueriesUseCase) {}
+
+  async handle(query: RelatedQueriesRequest) {
+    return this.useCase.execute(query);
+  }
 }

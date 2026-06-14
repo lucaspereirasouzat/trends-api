@@ -1,19 +1,16 @@
 import { describe, it, expect, mock } from "bun:test";
-import { createRelatedQueriesController } from "../../src/controllers/related-queries.controller";
+import { RelatedQueriesController } from "../../src/controllers/related-queries.controller";
 
 describe("RelatedQueriesController", () => {
   it("delegates query to use-case", async () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ data: { related_queries: {} } }),
     };
-    const app = createRelatedQueriesController(mockUseCase as any);
+    const controller = new RelatedQueriesController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/related-queries?keyword=machine+learning")
-    );
-    const body = await response.json();
+    const result = await controller.handle({ keyword: "machine learning" });
 
-    expect(body).toEqual({ data: { related_queries: {} } });
+    expect(result).toEqual({ data: { related_queries: {} } });
     expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "machine learning" });
   });
 
@@ -21,13 +18,10 @@ describe("RelatedQueriesController", () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ error: "keyword is required" }),
     };
-    const app = createRelatedQueriesController(mockUseCase as any);
+    const controller = new RelatedQueriesController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/related-queries")
-    );
-    const body = await response.json();
+    const result = await controller.handle({});
 
-    expect(body).toEqual({ error: "keyword is required" });
+    expect(result).toEqual({ error: "keyword is required" });
   });
 });

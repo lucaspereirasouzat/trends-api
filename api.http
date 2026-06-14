@@ -22,7 +22,7 @@ GET {{baseUrl}}/interest-over-time?keyword=bitcoin
 ###
 
 ### Interest Over Time - Comparando múltiplas palavras-chave
-GET {{baseUrl}}/interest-over-time?keyword=bitcoin,ethereum,dogecoin
+GET {{baseUrl}}/interest-over-time?keyword=copa
 
 ###
 

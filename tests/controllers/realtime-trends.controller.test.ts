@@ -1,19 +1,16 @@
 import { describe, it, expect, mock } from "bun:test";
-import { createRealtimeTrendsController } from "../../src/controllers/realtime-trends.controller";
+import { RealtimeTrendsController } from "../../src/controllers/realtime-trends.controller";
 
 describe("RealtimeTrendsController", () => {
-  it("delegates query to use-case with defaults", async () => {
+  it("delegates query to use-case with empty query", async () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ data: { trendingStories: [] } }),
     };
-    const app = createRealtimeTrendsController(mockUseCase as any);
+    const controller = new RealtimeTrendsController(mockUseCase as any);
 
-    const response = await app.handle(
-      new Request("http://localhost/realtime-trends")
-    );
-    const body = await response.json();
+    const result = await controller.handle({});
 
-    expect(body).toEqual({ data: { trendingStories: [] } });
+    expect(result).toEqual({ data: { trendingStories: [] } });
     expect(mockUseCase.execute).toHaveBeenCalledWith({});
   });
 
@@ -21,11 +18,9 @@ describe("RealtimeTrendsController", () => {
     const mockUseCase = {
       execute: mock().mockResolvedValue({ data: {} }),
     };
-    const app = createRealtimeTrendsController(mockUseCase as any);
+    const controller = new RealtimeTrendsController(mockUseCase as any);
 
-    await app.handle(
-      new Request("http://localhost/realtime-trends?geo=BR&category=business")
-    );
+    await controller.handle({ geo: "BR", category: "business" });
 
     expect(mockUseCase.execute).toHaveBeenCalledWith({ geo: "BR", category: "business" });
   });
