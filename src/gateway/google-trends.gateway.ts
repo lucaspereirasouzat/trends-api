@@ -1,3 +1,5 @@
+/// <reference path="../types/google-trends-api.d.ts" />
+
 import type {
   AutoCompleteOptions,
   DailyTrendsOptions,
