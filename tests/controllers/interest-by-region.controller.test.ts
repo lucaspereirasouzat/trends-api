@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { InterestByRegionController } from "../../src/controllers/interest-by-region.controller";
 
 describe("InterestByRegionController", () => {
@@ -11,7 +11,10 @@ describe("InterestByRegionController", () => {
     const result = await controller.handle({ keyword: "pizza", geo: "US" });
 
     expect(result).toEqual({ data: { interest_by_region: [] } });
-    expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "pizza", geo: "US" });
+    expect(mockUseCase.execute).toHaveBeenCalledWith({
+      keyword: "pizza",
+      geo: "US",
+    });
   });
 
   it("returns error when keyword is missing", async () => {

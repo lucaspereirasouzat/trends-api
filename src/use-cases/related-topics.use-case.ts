@@ -10,7 +10,9 @@ export interface RelatedTopicsRequest {
 export class RelatedTopicsUseCase {
   constructor(private readonly gateway: GoogleTrendsGateway) {}
 
-  async execute(request: RelatedTopicsRequest): Promise<{ data: unknown } | { error: string }> {
+  async execute(
+    request: RelatedTopicsRequest,
+  ): Promise<{ data: unknown } | { error: string }> {
     const { keyword, startTime, endTime, geo } = request;
 
     if (!keyword) {
@@ -23,7 +25,9 @@ export class RelatedTopicsUseCase {
     if (endTime) options.endTime = new Date(endTime);
     if (geo) options.geo = geo;
 
-    const data = await this.gateway.relatedTopics(options as Parameters<GoogleTrendsGateway["relatedTopics"]>[0]);
+    const data = await this.gateway.relatedTopics(
+      options as unknown as Parameters<GoogleTrendsGateway["relatedTopics"]>[0],
+    );
     return { data };
   }
 }

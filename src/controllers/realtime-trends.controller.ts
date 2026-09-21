@@ -1,5 +1,7 @@
-import type { RealtimeTrendsUseCase } from "../use-cases/realtime-trends.use-case";
-import type { RealtimeTrendsRequest } from "../use-cases/realtime-trends.use-case";
+import type {
+  RealtimeTrendsRequest,
+  RealtimeTrendsUseCase,
+} from "../use-cases/realtime-trends.use-case";
 
 export class RealtimeTrendsController {
   constructor(private readonly useCase: RealtimeTrendsUseCase) {}

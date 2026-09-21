@@ -1,13 +1,13 @@
-import googleTrends from "google-trends-api";
 import type {
   AutoCompleteOptions,
-  InterestOverTimeOptions,
+  DailyTrendsOptions,
   InterestByRegionOptions,
+  InterestOverTimeOptions,
+  RealTimeTrendsOptions,
   RelatedQueriesOptions,
   RelatedTopicsOptions,
-  RealTimeTrendsOptions,
-  DailyTrendsOptions,
-} from "../types/google-trends-api.d";
+} from "google-trends-api";
+import googleTrends from "google-trends-api";
 
 export interface GoogleTrendsGateway {
   autoComplete(options: AutoCompleteOptions): Promise<unknown>;

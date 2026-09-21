@@ -11,7 +11,9 @@ export interface InterestByRegionRequest {
 export class InterestByRegionUseCase {
   constructor(private readonly gateway: GoogleTrendsGateway) {}
 
-  async execute(request: InterestByRegionRequest): Promise<{ data: unknown } | { error: string }> {
+  async execute(
+    request: InterestByRegionRequest,
+  ): Promise<{ data: unknown } | { error: string }> {
     const { keyword, startTime, endTime, geo, resolution } = request;
 
     if (!keyword) {
@@ -25,7 +27,11 @@ export class InterestByRegionUseCase {
     if (geo) options.geo = geo;
     if (resolution) options.resolution = resolution;
 
-    const data = await this.gateway.interestByRegion(options as Parameters<GoogleTrendsGateway["interestByRegion"]>[0]);
+    const data = await this.gateway.interestByRegion(
+      options as unknown as Parameters<
+        GoogleTrendsGateway["interestByRegion"]
+      >[0],
+    );
     return { data };
   }
 }

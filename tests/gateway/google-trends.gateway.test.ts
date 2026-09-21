@@ -1,4 +1,4 @@
-import { describe, it, expect, mock, beforeEach } from "bun:test";
+import { beforeEach, describe, expect, it, mock } from "bun:test";
 
 const mockAutoComplete = mock();
 const mockInterestOverTime = mock();
@@ -68,7 +68,9 @@ describe("GoogleTrendsGatewayImpl", () => {
     const expected = { related_queries: { rising: [], top: [] } };
     mockRelatedQueries.mockResolvedValue(JSON.stringify(expected));
 
-    const result = await gateway.relatedQueries({ keyword: "machine learning" });
+    const result = await gateway.relatedQueries({
+      keyword: "machine learning",
+    });
 
     expect(result).toEqual(expected);
   });

@@ -7,7 +7,9 @@ export interface AutocompleteRequest {
 export class AutocompleteUseCase {
   constructor(private readonly gateway: GoogleTrendsGateway) {}
 
-  async execute(request: AutocompleteRequest): Promise<{ data: unknown } | { error: string }> {
+  async execute(
+    request: AutocompleteRequest,
+  ): Promise<{ data: unknown } | { error: string }> {
     const { keyword } = request;
 
     if (!keyword) {

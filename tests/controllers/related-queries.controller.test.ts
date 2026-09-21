@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { RelatedQueriesController } from "../../src/controllers/related-queries.controller";
 
 describe("RelatedQueriesController", () => {
@@ -11,7 +11,9 @@ describe("RelatedQueriesController", () => {
     const result = await controller.handle({ keyword: "machine learning" });
 
     expect(result).toEqual({ data: { related_queries: {} } });
-    expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "machine learning" });
+    expect(mockUseCase.execute).toHaveBeenCalledWith({
+      keyword: "machine learning",
+    });
   });
 
   it("returns error when keyword is missing", async () => {

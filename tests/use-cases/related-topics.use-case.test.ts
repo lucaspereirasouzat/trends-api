@@ -1,6 +1,6 @@
-import { describe, it, expect, mock } from "bun:test";
-import { RelatedTopicsUseCase } from "../../src/use-cases/related-topics.use-case";
+import { describe, expect, it, mock } from "bun:test";
 import type { GoogleTrendsGateway } from "../../src/gateway/google-trends.gateway";
+import { RelatedTopicsUseCase } from "../../src/use-cases/related-topics.use-case";
 
 function createMockGateway(): GoogleTrendsGateway {
   return {
@@ -8,7 +8,9 @@ function createMockGateway(): GoogleTrendsGateway {
     interestOverTime: mock().mockResolvedValue({}),
     interestByRegion: mock().mockResolvedValue({}),
     relatedQueries: mock().mockResolvedValue({}),
-    relatedTopics: mock().mockResolvedValue({ related_topics: { rising: [], top: [] } }),
+    relatedTopics: mock().mockResolvedValue({
+      related_topics: { rising: [], top: [] },
+    }),
     realTimeTrends: mock().mockResolvedValue({}),
     dailyTrends: mock().mockResolvedValue({}),
   };
@@ -30,7 +32,9 @@ describe("RelatedTopicsUseCase", () => {
 
     const result = await useCase.execute({ keyword: "chatgpt" });
 
-    expect(result).toEqual({ data: { related_topics: { rising: [], top: [] } } });
+    expect(result).toEqual({
+      data: { related_topics: { rising: [], top: [] } },
+    });
     expect(gateway.relatedTopics).toHaveBeenCalledWith({ keyword: "chatgpt" });
   });
 
@@ -45,7 +49,8 @@ describe("RelatedTopicsUseCase", () => {
       geo: "BR",
     });
 
-    const call = (gateway.relatedTopics as ReturnType<typeof mock>).mock.calls[0]![0];
+    const call = (gateway.relatedTopics as ReturnType<typeof mock>).mock
+      .calls[0]![0];
     expect(call.keyword).toBe("ai");
     expect(call.geo).toBe("BR");
     expect(call.startTime).toBeInstanceOf(Date);

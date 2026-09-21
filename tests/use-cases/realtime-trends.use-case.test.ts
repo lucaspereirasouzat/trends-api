@@ -1,6 +1,6 @@
-import { describe, it, expect, mock } from "bun:test";
-import { RealtimeTrendsUseCase } from "../../src/use-cases/realtime-trends.use-case";
+import { describe, expect, it, mock } from "bun:test";
 import type { GoogleTrendsGateway } from "../../src/gateway/google-trends.gateway";
+import { RealtimeTrendsUseCase } from "../../src/use-cases/realtime-trends.use-case";
 
 function createMockGateway(): GoogleTrendsGateway {
   return {
@@ -9,7 +9,9 @@ function createMockGateway(): GoogleTrendsGateway {
     interestByRegion: mock().mockResolvedValue({}),
     relatedQueries: mock().mockResolvedValue({}),
     relatedTopics: mock().mockResolvedValue({}),
-    realTimeTrends: mock().mockResolvedValue({ storySummaries: { trendingStories: [] } }),
+    realTimeTrends: mock().mockResolvedValue({
+      storySummaries: { trendingStories: [] },
+    }),
     dailyTrends: mock().mockResolvedValue({}),
   };
 }
@@ -21,7 +23,10 @@ describe("RealtimeTrendsUseCase", () => {
 
     await useCase.execute({});
 
-    expect(gateway.realTimeTrends).toHaveBeenCalledWith({ geo: "US", category: "all" });
+    expect(gateway.realTimeTrends).toHaveBeenCalledWith({
+      geo: "US",
+      category: "all",
+    });
   });
 
   it("overrides defaults with provided values", async () => {
@@ -30,7 +35,10 @@ describe("RealtimeTrendsUseCase", () => {
 
     await useCase.execute({ geo: "BR", category: "business" });
 
-    expect(gateway.realTimeTrends).toHaveBeenCalledWith({ geo: "BR", category: "business" });
+    expect(gateway.realTimeTrends).toHaveBeenCalledWith({
+      geo: "BR",
+      category: "business",
+    });
   });
 
   it("returns data from gateway", async () => {
@@ -39,6 +47,8 @@ describe("RealtimeTrendsUseCase", () => {
 
     const result = await useCase.execute({});
 
-    expect(result).toEqual({ data: { storySummaries: { trendingStories: [] } } });
+    expect(result).toEqual({
+      data: { storySummaries: { trendingStories: [] } },
+    });
   });
 });

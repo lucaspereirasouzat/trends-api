@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { AutocompleteController } from "../../src/controllers/autocomplete.controller";
 
 describe("AutocompleteController", () => {

@@ -1,6 +1,6 @@
-import { describe, it, expect, mock } from "bun:test";
-import { InterestByRegionUseCase } from "../../src/use-cases/interest-by-region.use-case";
+import { describe, expect, it, mock } from "bun:test";
 import type { GoogleTrendsGateway } from "../../src/gateway/google-trends.gateway";
+import { InterestByRegionUseCase } from "../../src/use-cases/interest-by-region.use-case";
 
 function createMockGateway(): GoogleTrendsGateway {
   return {
@@ -39,7 +39,11 @@ describe("InterestByRegionUseCase", () => {
     const gateway = createMockGateway();
     const useCase = new InterestByRegionUseCase(gateway);
 
-    await useCase.execute({ keyword: "restaurant", geo: "US-CA", resolution: "CITY" });
+    await useCase.execute({
+      keyword: "restaurant",
+      geo: "US-CA",
+      resolution: "CITY",
+    });
 
     expect(gateway.interestByRegion).toHaveBeenCalledWith({
       keyword: "restaurant",
@@ -58,7 +62,8 @@ describe("InterestByRegionUseCase", () => {
       endTime: "2024-12-31",
     });
 
-    const call = (gateway.interestByRegion as ReturnType<typeof mock>).mock.calls[0]![0];
+    const call = (gateway.interestByRegion as ReturnType<typeof mock>).mock
+      .calls[0]![0];
     expect(call.startTime).toBeInstanceOf(Date);
     expect(call.endTime).toBeInstanceOf(Date);
   });

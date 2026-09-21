@@ -1,6 +1,6 @@
-import { describe, it, expect, mock } from "bun:test";
-import { AutocompleteUseCase } from "../../src/use-cases/autocomplete.use-case";
+import { describe, expect, it, mock } from "bun:test";
 import type { GoogleTrendsGateway } from "../../src/gateway/google-trends.gateway";
+import { AutocompleteUseCase } from "../../src/use-cases/autocomplete.use-case";
 
 function createMockGateway(): GoogleTrendsGateway {
   return {

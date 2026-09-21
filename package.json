@@ -7,16 +7,20 @@
     "dev": "bun run --watch index.ts",
     "start": "bun run index.ts",
     "test": "bun test",
-    "test:watch": "bun test --watch"
+    "test:watch": "bun test --watch",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check ."
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
-    "elysia": "^1.4.19",
+    "elysia": "^1.4.30",
     "google-trends-api": "^4.9.2"
   }
 }

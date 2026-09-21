@@ -1,9 +1,9 @@
 declare module "google-trends-api" {
-  interface AutoCompleteOptions {
+  export interface AutoCompleteOptions {
     keyword: string;
   }
 
-  interface InterestOverTimeOptions {
+  export interface InterestOverTimeOptions {
     keyword: string | string[];
     startTime?: Date;
     endTime?: Date;
@@ -12,7 +12,7 @@ declare module "google-trends-api" {
     property?: string;
   }
 
-  interface InterestByRegionOptions {
+  export interface InterestByRegionOptions {
     keyword: string;
     startTime?: Date;
     endTime?: Date;
@@ -20,26 +20,26 @@ declare module "google-trends-api" {
     resolution?: string;
   }
 
-  interface RelatedQueriesOptions {
+  export interface RelatedQueriesOptions {
     keyword: string;
     startTime?: Date;
     endTime?: Date;
     geo?: string;
   }
 
-  interface RelatedTopicsOptions {
+  export interface RelatedTopicsOptions {
     keyword: string;
     startTime?: Date;
     endTime?: Date;
     geo?: string;
   }
 
-  interface RealTimeTrendsOptions {
+  export interface RealTimeTrendsOptions {
     geo: string;
     category: string;
   }
 
-  interface DailyTrendsOptions {
+  export interface DailyTrendsOptions {
     geo: string;
     trendDate?: Date;
   }

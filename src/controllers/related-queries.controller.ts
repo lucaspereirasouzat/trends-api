@@ -1,5 +1,7 @@
-import type { RelatedQueriesUseCase } from "../use-cases/related-queries.use-case";
-import type { RelatedQueriesRequest } from "../use-cases/related-queries.use-case";
+import type {
+  RelatedQueriesRequest,
+  RelatedQueriesUseCase,
+} from "../use-cases/related-queries.use-case";
 
 export class RelatedQueriesController {
   constructor(private readonly useCase: RelatedQueriesUseCase) {}

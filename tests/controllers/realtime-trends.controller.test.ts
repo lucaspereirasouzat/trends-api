@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { RealtimeTrendsController } from "../../src/controllers/realtime-trends.controller";
 
 describe("RealtimeTrendsController", () => {
@@ -22,6 +22,9 @@ describe("RealtimeTrendsController", () => {
 
     await controller.handle({ geo: "BR", category: "business" });
 
-    expect(mockUseCase.execute).toHaveBeenCalledWith({ geo: "BR", category: "business" });
+    expect(mockUseCase.execute).toHaveBeenCalledWith({
+      geo: "BR",
+      category: "business",
+    });
   });
 });

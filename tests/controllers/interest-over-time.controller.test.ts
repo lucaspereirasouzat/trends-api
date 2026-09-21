@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { InterestOverTimeController } from "../../src/controllers/interest-over-time.controller";
 
 describe("InterestOverTimeController", () => {
@@ -11,7 +11,10 @@ describe("InterestOverTimeController", () => {
     const result = await controller.handle({ keyword: "bitcoin", geo: "US" });
 
     expect(result).toEqual({ data: { interest_over_time: {} } });
-    expect(mockUseCase.execute).toHaveBeenCalledWith({ keyword: "bitcoin", geo: "US" });
+    expect(mockUseCase.execute).toHaveBeenCalledWith({
+      keyword: "bitcoin",
+      geo: "US",
+    });
   });
 
   it("passes all optional params through", async () => {

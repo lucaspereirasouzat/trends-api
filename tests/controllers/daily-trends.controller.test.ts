@@ -1,4 +1,4 @@
-import { describe, it, expect, mock } from "bun:test";
+import { describe, expect, it, mock } from "bun:test";
 import { DailyTrendsController } from "../../src/controllers/daily-trends.controller";
 
 describe("DailyTrendsController", () => {
@@ -22,6 +22,9 @@ describe("DailyTrendsController", () => {
 
     await controller.handle({ geo: "BR", trendDate: "2024-12-25" });
 
-    expect(mockUseCase.execute).toHaveBeenCalledWith({ geo: "BR", trendDate: "2024-12-25" });
+    expect(mockUseCase.execute).toHaveBeenCalledWith({
+      geo: "BR",
+      trendDate: "2024-12-25",
+    });
   });
 });

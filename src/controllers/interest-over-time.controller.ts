@@ -1,5 +1,7 @@
-import type { InterestOverTimeUseCase } from "../use-cases/interest-over-time.use-case";
-import type { InterestOverTimeRequest } from "../use-cases/interest-over-time.use-case";
+import type {
+  InterestOverTimeRequest,
+  InterestOverTimeUseCase,
+} from "../use-cases/interest-over-time.use-case";
 
 export class InterestOverTimeController {
   constructor(private readonly useCase: InterestOverTimeUseCase) {}

@@ -1,11 +1,13 @@
-import { describe, it, expect, mock } from "bun:test";
-import { InterestOverTimeUseCase } from "../../src/use-cases/interest-over-time.use-case";
+import { describe, expect, it, mock } from "bun:test";
 import type { GoogleTrendsGateway } from "../../src/gateway/google-trends.gateway";
+import { InterestOverTimeUseCase } from "../../src/use-cases/interest-over-time.use-case";
 
 function createMockGateway(): GoogleTrendsGateway {
   return {
     autoComplete: mock().mockResolvedValue({}),
-    interestOverTime: mock().mockResolvedValue({ interest_over_time: { date: [] } }),
+    interestOverTime: mock().mockResolvedValue({
+      interest_over_time: { date: [] },
+    }),
     interestByRegion: mock().mockResolvedValue({}),
     relatedQueries: mock().mockResolvedValue({}),
     relatedTopics: mock().mockResolvedValue({}),
@@ -30,7 +32,9 @@ describe("InterestOverTimeUseCase", () => {
 
     await useCase.execute({ keyword: "bitcoin" });
 
-    expect(gateway.interestOverTime).toHaveBeenCalledWith({ keyword: "bitcoin" });
+    expect(gateway.interestOverTime).toHaveBeenCalledWith({
+      keyword: "bitcoin",
+    });
   });
 
   it("splits comma-separated keywords into array", async () => {
@@ -54,7 +58,8 @@ describe("InterestOverTimeUseCase", () => {
       endTime: "2024-12-31",
     });
 
-    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock.calls[0]![0];
+    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock
+      .calls[0]![0];
     expect(call.startTime).toBeInstanceOf(Date);
     expect(call.endTime).toBeInstanceOf(Date);
   });
@@ -63,7 +68,10 @@ describe("InterestOverTimeUseCase", () => {
     const gateway = createMockGateway();
     const useCase = new InterestOverTimeUseCase(gateway);
 
-    await useCase.execute({ keyword: "bitcoin", granularTimeResolution: "true" });
+    await useCase.execute({
+      keyword: "bitcoin",
+      granularTimeResolution: "true",
+    });
 
     expect(gateway.interestOverTime).toHaveBeenCalledWith({
       keyword: "bitcoin",
@@ -75,7 +83,10 @@ describe("InterestOverTimeUseCase", () => {
     const gateway = createMockGateway();
     const useCase = new InterestOverTimeUseCase(gateway);
 
-    await useCase.execute({ keyword: "bitcoin", granularTimeResolution: "false" });
+    await useCase.execute({
+      keyword: "bitcoin",
+      granularTimeResolution: "false",
+    });
 
     expect(gateway.interestOverTime).toHaveBeenCalledWith({
       keyword: "bitcoin",
@@ -89,7 +100,8 @@ describe("InterestOverTimeUseCase", () => {
 
     await useCase.execute({ keyword: "bitcoin" });
 
-    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock.calls[0]![0];
+    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock
+      .calls[0]![0];
     expect(call).toEqual({ keyword: "bitcoin" });
   });
 
@@ -111,7 +123,8 @@ describe("InterestOverTimeUseCase", () => {
 
     await useCase.execute({ keyword: "bitcoin" });
 
-    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock.calls[0]![0];
+    const call = (gateway.interestOverTime as ReturnType<typeof mock>).mock
+      .calls[0]![0];
     expect(call.property).toBeUndefined();
   });
 });

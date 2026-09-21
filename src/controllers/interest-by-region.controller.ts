@@ -1,5 +1,7 @@
-import type { InterestByRegionUseCase } from "../use-cases/interest-by-region.use-case";
-import type { InterestByRegionRequest } from "../use-cases/interest-by-region.use-case";
+import type {
+  InterestByRegionRequest,
+  InterestByRegionUseCase,
+} from "../use-cases/interest-by-region.use-case";
 
 export class InterestByRegionController {
   constructor(private readonly useCase: InterestByRegionUseCase) {}
