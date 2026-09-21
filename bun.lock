@@ -5,6 +5,7 @@
     "": {
       "name": "trends-api",
       "dependencies": {
+        "@elysia/openapi": "^1.4.16",
         "elysia": "^1.4.30",
         "google-trends-api": "^4.9.2",
       },
@@ -37,6 +38,8 @@
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.5.14", "", { "os": "win32", "cpu": "x64" }, "sha512-oJWmBhoHsnhUKIke+0gXDX0mltJrWHA1UyHsrTlXwX0TL64ilVZAo+TYZm97baecV0esBdpzy3k96q+09JaZUQ=="],
 
     "@borewit/text-codec": ["@borewit/text-codec@0.1.1", "", {}, "sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA=="],
+
+    "@elysia/openapi": ["@elysia/openapi@1.4.16", "", { "peerDependencies": { "@sinclair/typebox": ">= 0.34.0 < 1", "elysia": ">= 1.4.0", "typescript": ">= 5.0.0" } }, "sha512-bAaU1yOn8oxTv+EdzrW8z7RccUQ/y9zeMEPLz+K6lyc4KJ2MLTT0QI9H7Inh2O6N8PDv2nfXGFH8YDfJUOLPOQ=="],
 
     "@sinclair/typebox": ["@sinclair/typebox@0.34.45", "", {}, "sha512-qJcFVfCa5jxBFSuv7S5WYbA8XdeCPmhnaVVfX/2Y6L8WYg8sk3XY2+6W0zH+3mq1Cz+YC7Ki66HfqX6IHAwnkg=="],
 

@@ -1,3 +1,4 @@
+import { openapi } from "@elysia/openapi";
 import { Elysia } from "elysia";
 import { AutocompleteController } from "./controllers/autocomplete.controller";
 import { DailyTrendsController } from "./controllers/daily-trends.controller";
@@ -82,6 +83,18 @@ export const dailyTrendsScheduler = new DailyTrendsScheduler(
 );
 
 export const app = new Elysia()
+  .use(
+    openapi({
+      path: "/docs",
+      documentation: {
+        info: {
+          title: "Google Trends API",
+          version: "1.0.0",
+          description: "API para consulta de tendências do Google Trends.",
+        },
+      },
+    }),
+  )
   .use(autocompleteRoute(autocompleteController))
   .use(interestOverTimeRoute(interestOverTimeController))
   .use(interestByRegionRoute(interestByRegionController))
@@ -92,6 +105,10 @@ export const app = new Elysia()
   .use(storedDailyTrendsRoute(storedDailyTrendsController))
   .get("/", () => ({
     message: "Google Trends API",
+    documentation: {
+      scalar: "/docs",
+      openapi: "/docs/json",
+    },
     endpoints: {
       "/autocomplete": "GET - Autocomplete suggestions (query: keyword)",
       "/interest-over-time":

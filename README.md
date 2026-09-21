@@ -12,6 +12,12 @@ To run:
 bun run index.ts
 ```
 
+## API documentation
+
+With the server running, access the interactive Scalar reference at
+`http://localhost:3001/docs`. The generated OpenAPI document is also available
+at `http://localhost:3001/docs/json`.
+
 ## Daily snapshots
 
 The service stores a daily `daily-trends` snapshot in SQLite and exposes it at
