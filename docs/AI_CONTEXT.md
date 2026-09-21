@@ -28,9 +28,6 @@ Use-Cases (src/use-cases/)        -- Validation, option building, date parsing
     |
     v
 Gateway (src/gateway/)            -- Wraps google-trends-api, handles JSON parsing
-    |
-    v
-Repositories (src/repositories/)  -- Persist scheduled daily snapshots in SQLite
 ```
 
 Data flow: Route maps HTTP path -> Controller extracts values, delegates to Use-Case -> Use-Case validates params, builds options -> calls Gateway -> Gateway calls google-trends-api and parses JSON -> result flows back up.
@@ -47,8 +44,6 @@ trends-api/
 │   │   └── google-trends-api.d.ts     # Ambient TypeScript declarations for google-trends-api
 │   ├── gateway/
 │   │   └── google-trends.gateway.ts   # GoogleTrendsGateway interface + GoogleTrendsGatewayImpl
-│   ├── repositories/                  # SQLite persistence abstractions and implementation
-│   └── schedulers/                    # In-process daily scheduler
 │   ├── use-cases/
 │   │   ├── autocomplete.use-case.ts
 │   │   ├── interest-over-time.use-case.ts
@@ -92,7 +87,6 @@ trends-api/
 | `GET /related-topics` | `keyword` | `startTime`, `endTime`, `geo` | - |
 | `GET /realtime-trends` | - | `geo`, `category` | `geo=US`, `category=all` |
 | `GET /daily-trends` | - | `geo`, `trendDate` | `geo=US` |
-| `GET /daily-trends/stored` | `trendDate` | `geo` | `geo=US` |
 | `GET /` | - | - | Returns API documentation JSON |
 
 **Response format:**

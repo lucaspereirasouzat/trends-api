@@ -1,4 +1,4 @@
-import { app, dailyTrendsScheduler } from "./src/app";
+import { app } from "./src/app";
 
 if (import.meta.main) {
   const port = Number(process.env.PORT ?? 3001);
@@ -8,7 +8,6 @@ if (import.meta.main) {
   }
 
   app.listen(port);
-  dailyTrendsScheduler.start();
 
   console.log(
     `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
