@@ -1,5 +1,5 @@
 ### Google Trends API - REST Client
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3010
 
 ### Documentação - Lista todas as rotas disponíveis
 GET {{baseUrl}}/
